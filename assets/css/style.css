@@ -1,0 +1,14 @@
+
+.background {
+  background-image: url("../images/image1.jpg");
+  background-size: 100%;
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
+  padding-bottom: 50%;
+}
+
+.n-btn{
+  padding-top: 12px;
+    padding-bottom: 12px;
+}
