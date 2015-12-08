@@ -3,7 +3,7 @@
 var express = require('express');
 var app = express();
 
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 3100;
 var bodyParser = require('body-parser');
 
 //parse body contents as a JSON objects
