@@ -1,0 +1,20 @@
+{
+  "name": "feedboard",
+  "version": "0.0.0",
+  "homepage": "https://github.com/andela-batolagbe/feedboard",
+  "authors": [
+    "andela-batolagbe <atolagbe.bisoye@andela.co>"
+  ],
+  "description": "practice reactjs app",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "materialize": "~0.97.3"
+  }
+}

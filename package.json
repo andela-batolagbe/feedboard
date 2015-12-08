@@ -1,0 +1,46 @@
+{
+  "name": "feedboard",
+  "version": "1.0.0",
+  "description": "practice reactjs based app",
+  "main": "server.js",
+  "scripts": {
+    "start": "gulp",
+    "test": "echo no test specified yet"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andela-batolagbe/feedboard.git"
+  },
+  "author": "Atolagbe Bisoye",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/andela-batolagbe/feedboard/issues"
+  },
+  "homepage": "https://github.com/andela-batolagbe/feedboard#readme",
+  "dependencies": {
+    "body-parser": "^1.14.1",
+    "express": "^4.13.3",
+    "jquery": "^2.1.4",
+    "materialize": "^1.0.0",
+    "react": "^0.14.3",
+    "react-dom": "^0.14.3"
+  },
+  "devDependencies": {
+    "browserify": "^12.0.1",
+    "del": "^2.1.0",
+    "gulp": "^3.9.0",
+    "gulp-browserify": "^0.5.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-html-replace": "^1.5.5",
+    "gulp-nodemon": "^2.0.4",
+    "gulp-react": "^3.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^1.5.1",
+    "gulp-util": "^3.0.7",
+    "reactify": "^1.1.1",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.6.1"
+  }
+}
