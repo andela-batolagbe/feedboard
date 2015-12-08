@@ -113,3 +113,12 @@ margin-top: 5%;
   background-color: #000000;
   padding: 1em;
 }
+.andela-footer{
+  height: 7%;
+  width: 7%;
+
+}
+
+.no-margin{
+  margin-right: -8%;
+}
