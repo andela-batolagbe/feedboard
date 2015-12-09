@@ -1,13 +1,22 @@
-var Footer = React.createClass({
-  render: function(){
-    return <section>
+import React from 'react';
+
+class Footer extends React.Component{
+  componentDidMount(){
+    $( document ).ready(function(){
+    $(".button-collapse").sideNav();
+  });
+  }
+
+  render(){
+    return (<section>
     <footer className="page-footer yellow darken-4">
     <div className="footer-copyright yellow darken-4">
             <div className="footer">
             © 2015 gidiHots
             <div className="right no-margin">
             Design with  &nbsp;
-            <i className="material-icons prefix red-text text-dark-2">favorite</i> &nbsp; by &nbsp;
+            <i className="material-icons prefix red-text text-dark-2">favorite</i>
+            &nbsp; by &nbsp;
             <a className="black-text" target="_blank" href="https://github.com/andela-batolagbe">
             Bisoye &nbsp;</a>
             from &nbsp;<a href="http://andela.com" target="_blank">
@@ -17,6 +26,8 @@ var Footer = React.createClass({
             </div>
           </div>
         </footer>
-    </section>
+    </section>)
   }
-})
+}
+
+export default Footer;

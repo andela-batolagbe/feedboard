@@ -3,14 +3,23 @@ var gutil = require('gulp-util')
 var uglify = require('gulp-uglify');
 var concat = require('gulp-concat');
 var browserify = require('browserify');
-var reactify = require('reactify');
+var babelify = require('babelify');
 var watchify = require('watchify');
 var nodemon = require('gulp-nodemon');
 var del = require('del');
 var rename = require('gulp-rename');
+var gulpif = require('gulp-if');
 var sourcemaps = require('gulp-sourcemaps');
 var source = require('vinyl-source-stream');
 var buffer = require('vinyl-buffer');
+
+var production = process.env.NODE_ENV === 'production';
+
+var dependencies = [
+  'react',
+  'react-dom',
+  'react-router'
+];
 
 gulp.paths = {
   app: 'app',
@@ -18,46 +27,56 @@ gulp.paths = {
   test: 'test'
 };
 
+
+
 gulp.task('clean', function() {
   del(['assets/dist/*.js', 'assets/dist/*.css']).then(function() {
     console.log("removed previous build");
   });
 });
 
-gulp.task('join', function() {
-  return gulp.src(['app/components/*.js', 'app/app.js'])
-    .pipe(sourcemaps.init())
-    .pipe(concat('app.js'))
-    .pipe(gulp.dest(gulp.paths.builds));
-});
-
-gulp.task('build', ['join'], function() {
-
-  var bundler = browserify({
-    entries: [gulp.paths.builds + '/app.js'],
-    transform: [reactify],
-    debug: true,
-    cache: {},
-    packageCache: {},
-    fullPaths: true
-  });
-  bundler.external('react');
-
-  return watchify(bundler)
+gulp.task('build-dependencies', function() {
+  return browserify()
+    .require(dependencies)
     .bundle()
-    .pipe(source('main.js'))
-    .pipe(buffer())
-    .pipe(sourcemaps.init())
-    .pipe(uglify())
-    .pipe(rename({
-      extname: '.min.js'
-    }))
-    .pipe(sourcemaps.write())
+    .pipe(source('libs.bundle.js'))
+    .pipe(gulpif(production, uglify({
+      mangle: false
+    })))
     .pipe(gulp.dest(gulp.paths.builds));
 });
 
+gulp.task('build', ['build-dependencies'], function() {
+  var bundler = watchify(browserify('app/app.js', watchify.args));
+  bundler.external(dependencies);
+  bundler.transform(babelify, {
+    presets: ['es2015', 'react']
+  })
+  bundler.on('update', rebundle);
+  return rebundle();
 
-gulp.task('nodemon', ['join', 'build'], function() {
+  function rebundle() {
+    return bundler.bundle()
+      .on('error', function(err) {
+        gutil.log(gutil.colors.red(err.toString()));
+      })
+      .on('end', function() {
+        gutil.log(gutil.colors.green('finished rebuilding files'));
+      })
+      .pipe(source('main.js'))
+      .pipe(buffer())
+      .pipe(sourcemaps.init())
+      .pipe(gulpif(production, uglify({
+        mangle: false
+      }).pipe(rename({
+        extname: '.min.js'
+      }))))
+      .pipe(sourcemaps.write())
+      .pipe(gulp.dest(gulp.paths.builds));
+  }
+});
+
+gulp.task('nodemon', ['build-dependencies', 'build'], function() {
   nodemon({
       script: 'server.js',
       ext: 'js',
@@ -69,11 +88,11 @@ gulp.task('nodemon', ['join', 'build'], function() {
 });
 
 gulp.task('watch', function() {
-  gulp.watch(gulp.paths.app+ '/**/*.js', ['clean', 'join', 'build', 'nodemon']);
+  gulp.watch(gulp.paths.app + '/**/*.js', ['clean', 'build-dependencies', 'build', 'nodemon']);
 });
 
 
-gulp.task('default', ['clean', 'join', 'build', 'nodemon'], function() {
+gulp.task('default', ['clean', 'build-dependencies', 'build', 'nodemon'], function() {
   gulp.start('watch');
 });
 

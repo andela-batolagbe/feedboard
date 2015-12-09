@@ -1,16 +1,12 @@
 'use strict';
 
-var MainPage = React.createClass({
-  render: function() {
-    return ( <section><NavBar />
-      <Landing/>
-      <About/>
-      <Subscribe/>
-      <Contact/>
-      <Footer/>
-      </section>)
+import React from 'react';
+import ReactDOM  from 'react-dom';
+import Router from 'react-router';
+import createBrowserHistory from 'history/lib/createBrowserHistory';
+import routes from './routes';
+import NavBar from './components/navbar';
 
-  }
-});
+let history = createBrowserHistory(); 
 
-ReactDOM.render( <MainPage /> , document.getElementById('main'));
+ReactDOM.render( <Router history={history}>{routes}</Router> , document.getElementById('app'));

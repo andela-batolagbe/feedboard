@@ -19,7 +19,7 @@ body {
 #loc-search {
   border-bottom: 1px solid #1976D2;
 }
-#location, #email, #name, #message{
+#location, #email, #name, #message {
   border-bottom: 1px solid #f57f17;
 }
 .centered {
@@ -46,16 +46,28 @@ body {
 }
 #map-canvas {
   float: right;
-  width: 40%;
+  width: 41%;
   position: relative;
   top: 0;
   left: 0;
-  z-index: 0;
+  z-index: 1;
   height: 30%;
-  padding-bottom: 45%;
+  padding-bottom: 39%;
 }
 .detail {
-  padding-top: 5%;
+  padding-top: 10%;
+}
+@media only screen and (max-width: 900px) {
+  #map-canvas {
+    float: none;
+    width: 70%;
+    margin-left: 15% !important;
+    margin-bottom: 5%;
+  }
+  .brand-logo{
+    margin-left: -1%;
+    height: 99%;
+  }
 }
 .abt-box {
   margin: auto 1.3em;
@@ -72,17 +84,16 @@ body {
   font-weight: lighter;
   display: block;
 }
-.sub-form{
-margin-top: 5%;
+.sub-form {
+  margin-top: 5%;
 }
-.sub-wrapper{
+.sub-wrapper {
   margin: 0 22% !important;
   padding-bottom: 4% !important;
 }
 .sub {
   padding-bottom: 4%
 }
-
 .contact-bg {
   background-image: url("../images/image4.jpg");
   background-attachment: fixed;
@@ -94,7 +105,6 @@ margin-top: 5%;
   padding-bottom: 25%;
   bottom: 0;
 }
-
 .contact-form {
   margin: 0 22% !important;
   display: inline-block;
@@ -107,18 +117,15 @@ margin-top: 5%;
   padding-bottom: 7%;
   margin-bottom: 5% !important;
 }
-
-.email{
+.email {
   display: inline-block;
   background-color: #000000;
   padding: 1em;
 }
-.andela-footer{
+.andela-footer {
   height: 7%;
   width: 7%;
-
 }
-
-.no-margin{
+.no-margin {
   margin-right: -8%;
 }

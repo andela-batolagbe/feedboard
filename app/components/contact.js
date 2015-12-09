@@ -1,8 +1,13 @@
-var Contact = React.createClass({
-  contactMessage: "Add your business and events to our list, get in touch with us.",
-  render: function() {
-    return <section id="contact" className ="contact-bg">
-      <div className="m1 center heading"><h5 className="yellow-text text-darken-4">{this.contactMessage}</h5>
+import React from 'react';
+
+class Contact extends React.Component{
+
+constructor(props) {
+  super(props);
+} 
+  render() {
+    return (<section id="contact" className ="contact-bg">
+      <div className="m1 center heading"><h5 className="yellow-text text-darken-4">{this.props.contactMessage}</h5>
       </div>
       <div className = "row contact-form center">
    <form className="sub-form col s12">
@@ -26,7 +31,14 @@ var Contact = React.createClass({
       <div className = "center"><h5 className="block info blue-text text-lighten-2">You can also reach us through our mail,</h5>
       <h5 className="email info blue-text text-lighten-2"> contact@gidihots.com
       </h5></div>
-      </section>
+      </section>)
 
   }
-});
+};
+
+Contact.defaultProps = {
+  contactMessage: "Add your business and events to our list, get in touch with us."
+};
+
+
+export default Contact
