@@ -31,7 +31,7 @@ handleClick(event) {
     return 1;
   }
     searchLocationSpots.searchSpots(location);
-    this.props.history.push('searches');
+    this.props.history.pushState('searches');
 }
 
   render() {
