@@ -30,8 +30,8 @@ handleClick(event) {
   if (!location){
     return 1;
   }
+    this.props.history.pushState('','searches', '');
     searchLocationSpots.searchSpots(location);
-    this.props.history.pushState('searches');
 }
 
   render() {
