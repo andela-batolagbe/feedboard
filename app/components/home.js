@@ -1,8 +1,10 @@
 import React from 'react';
+import Router from 'react-router';
 import searchLocationSpots from '../actions/searchSpot';
 import spotsStore from '../stores/spotStores';
-import Router from 'react-router';
-
+import About from './about';
+import Subscribe from './subscribe';
+import Contact from './contact';
 class Home extends  React.Component{
 
 constructor(props) {
@@ -35,7 +37,8 @@ handleClick(event) {
 }
 
   render() {
-    return (<section className ="landing-bg">
+    return (<section>
+      <section className ="landing-bg">
       <div className="center heading"><h1 className="yellow-text text-darken-4">Find the Fun, Then Go Have It!</h1>
       <h4 className="blue-text text-lighten-2">gidiHots tells you what and where it is happening near you, <br />
       then you can decide to join the excitement</h4>
@@ -51,6 +54,10 @@ handleClick(event) {
       Find</button>
         </div>
       </form>
+      </section>
+      <About />
+      <Subscribe />
+      <Contact />
       </section>)
 
   }
