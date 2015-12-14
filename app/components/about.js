@@ -12,6 +12,7 @@ constructor(props) {
 
 initialize() {
     let mapCanvas = document.getElementById('map-canvas');
+    
     const mapOptions = {
       center: new google.maps.LatLng(this.props.mapLat, this.props.mapLong),
       zoom: this.props.initialZoom

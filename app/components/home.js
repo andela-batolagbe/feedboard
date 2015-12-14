@@ -1,6 +1,7 @@
 import React from 'react';
 import searchLocationSpots from '../actions/searchSpot';
 import spotsStore from '../stores/spotStores';
+import Router from 'react-router';
 
 class Home extends  React.Component{
 
@@ -22,17 +23,15 @@ constructor(props) {
     this.setState(state);
   }
 
-submitLocation(event) {
+handleClick(event) {
   event.preventDefault();
 
   var location = this.state.location.trim();
-
   if (!location){
     return 1;
   }
-  else {
     searchLocationSpots.searchSpots(location);
-  }
+    this.props.history.pushState('searches');
 }
 
   render() {
@@ -41,14 +40,17 @@ submitLocation(event) {
       <h4 className="blue-text text-lighten-2">gidiHots tells you what and where it is happening near you, <br />
       then you can decide to join the excitement</h4>
       </div>
+      <form onSubmit={this.handleClick.bind(this)} >
       <div className = "row centered">
       <div className="input-field col s6 z-depth-4">
       <i className="material-icons prefix blue-text text-lighten-2">search</i>
-      <input id="place" type = "text" className = "blue-text text-lighten-2" id="loc-search"></input>
+      <input onChange={searchLocationSpots.updateLocation} type = "text" className = "blue-text text-lighten-2" id="loc-search"></input>
       <label className="blue-text text-lighten-2" htmlFor="loc-search">Enter your location</label>
       </div>
-      <button onClick={this.submitLocation.bind('#place')} className =" btn btn-block yellow darken-4 blue-text text-darken-4 submit" >Find</button>
-      </div>
+     <button type="submit" className =" btn btn-large right yellow darken-4 blue-text text-darken-4" >
+      Find</button>
+        </div>
+      </form>
       </section>)
 
   }
