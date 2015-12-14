@@ -7,12 +7,17 @@ class DisplayResult extends React.Component {
   constructor(props) {
     super(props);
     this.state = spotsStore.getState();
+    this.onChange = this.onChange.bind(this);
   }
 
   componentDidMount() {
+  console.log(this.props.lat);
     this.initialize();
   }
 
+  onChange(state) {
+    this.setState(state);
+  }
 
   initialize() {
     let mapCanvas = document.getElementById('result-map');
@@ -32,7 +37,7 @@ class DisplayResult extends React.Component {
         lng: this.props.lng,
       },
       radius: 500,
-      types: ['restaurant', 'cafe', 'movie_theater', 'night_club']
+      types: ['restaurant']
     }, callback);
 
    function callback(results, status) {
