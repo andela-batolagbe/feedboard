@@ -12,9 +12,6 @@ export default (
   <Route path ='/' component={App}>
     <IndexRoute component= {Home} />
     <Route path='/' component={Home} />
-    <Route path='about' component={About} />
-    <Route path='subscribe' component={Subscribe} />
-    <Route path='contact' component={Contact} />
     <Route path='searches' component={DisplayResult} />
   </Route>
 );
